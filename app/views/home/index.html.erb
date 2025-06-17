@@ -1,0 +1,37 @@
+<div class="text-center mt-20 max-w-xl mx-auto">
+  <h1 class="text-4xl font-bold mb-6">Czego potrzebujesz?</h1>
+
+  <div class="flex justify-center gap-4 mb-8">
+    <button onclick="showForm('want')" class="bg-orange-500 text-white py-2 px-4 rounded">Szukam</button>
+    <button onclick="showForm('offer')" class="bg-gray-300 text-black py-2 px-4 rounded">Oferuję</button>
+  </div>
+
+  <div id="dynamic-form"></div>
+</div>
+
+<script>
+  function showForm(type) {
+    const form = document.getElementById("dynamic-form");
+
+    if (type === 'want') {
+      form.innerHTML = `
+        <form action="/ads" method="get">
+          <input type="hidden" name="type" value="want">
+          <div>
+            <label for="query">Czego szukasz?</label>
+            <input type="text" name="query" class="border rounded w-full px-3 py-2 my-2">
+          </div>
+          <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded mt-2">Szukaj ofert</button>
+        </form>
+      `;
+    } else {
+      form.innerHTML = `
+        <form action="/ads/new" method="get">
+          <input type="hidden" name="type" value="offer">
+          <p class="mb-2">Chcesz dodać ogłoszenie?</p>
+          <button type="submit" class="bg-gray-700 text-white px-4 py-2 rounded">Dodaj ogłoszenie</button>
+        </form>
+      `;
+    }
+  }
+</script>
