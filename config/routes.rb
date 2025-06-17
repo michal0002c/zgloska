@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "home/index"
+  resources :ads
   devise_for :users
   root "home#index"
 

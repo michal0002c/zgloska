@@ -1,0 +1,51 @@
+<h1 class="text-2xl font-bold mb-4">Dodaj ogłoszenie</h1>
+
+<%= form_with model: @ad, local: true do |f| %>
+  <% if @ad.errors.any? %>
+    <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
+      <h2><%= pluralize(@ad.errors.count, "błąd") %> uniemożliwił zapis:</h2>
+      <ul>
+        <% @ad.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= f.label :title, "Tytuł ogłoszenia" %><br>
+    <%= f.text_field :title, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, "Opis" %><br>
+    <%= f.text_area :description, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :ad_type, "Typ ogłoszenia" %><br>
+    <%= f.select :ad_type, [["Szukam", "szukam"], ["Oferuję", "oferuję"]], {}, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :budget, "Budżet (zł)" %><br>
+    <%= f.number_field :budget, step: 0.01, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :location, "Lokalizacja" %><br>
+    <%= f.text_field :location, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :category, "Kategoria" %><br>
+    <%= f.text_field :category, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :contact_method, "Forma kontaktu (np. email, tel)" %><br>
+    <%= f.text_field :contact_method, class: "w-full border px-2 py-1 rounded" %>
+  </div>
+
+  <%= f.submit "Dodaj ogłoszenie", class: "bg-orange-500 text-white px-4 py-2 rounded" %>
+<% end %>
