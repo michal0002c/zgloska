@@ -2,7 +2,11 @@ class AdsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @ads = Ad.all.order(created_at: :desc)
+    if params[:query].present?
+      @ads = Ad.where(ad_type: "szukam").where("title ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @ads = Ad.all.order(created_at: :desc)
+    end
   end
 
   def show
