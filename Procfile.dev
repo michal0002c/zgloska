@@ -1,2 +1,3 @@
-web: bin/rails server
+web: bin/rails server -p 3000
+css: npm run build:css
 css: bin/rails tailwindcss:watch

@@ -1,17 +1,14 @@
 <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 py-10">
   <div class="container mx-auto">
 
-    <div class="">
-    </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <div class="md:col-span-1 bg-white p-6 rounded shadow">
         <h2 class="text-2xl font-semibold mb-4">Co chcesz zrobić?</h2>
 
         <div class="flex flex-col gap-4">
-          <button onclick="showForm('want')" class="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">Szukam</button>
-          <button onclick="showForm('offer')" class="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400">Oferuję</button>
+          <button onclick="showForm('szukam')" class="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">Szukam</button>
+          <button onclick="showForm('oferuję')" class="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400">Oferuję</button>
         </div>
 
         <div id="dynamic-form" class="mt-6"></div>
@@ -19,36 +16,12 @@
 
       <div class="md:col-span-2">
         <h2 class="text-2xl font-bold mb-6">Najnowsze ogłoszenia</h2>
-
-        <% if @ads&.any? %>
+        <% if @ads.any? %>
           <div class="grid gap-4">
-            <% @ads.each do |ad| %>
-              <div class="border p-4 rounded shadow bg-white hover:shadow-md transition">
-                <div class="flex justify-between items-center">
-                  <h3 class="text-xl font-semibold"><%= link_to ad.title, ad_path(ad), class: "text-blue-600 hover:underline" %></h3>
-                  <span class="text-sm px-2 py-1 rounded-full <%= ad.ad_type == "szukam" ? "bg-blue-100 text-blue-700" : "bg-green-100 text-green-700" %>">
-                    <%= ad.ad_type.capitalize %>
-                  </span>
-                </div>
-
-                <p class="text-gray-700 mt-2"><%= truncate(ad.description, length: 100) %></p>
-
-                <div class="mt-2 text-sm text-gray-500">
-                  Kategoria: <%= ad.category %> • Lokalizacja: <%= ad.location %>
-                </div>
-
-                <div class="mt-2 font-semibold">
-                  Budżet: <%= number_to_currency(ad.budget, unit: "zł") %>
-                </div>
-
-                <div class="mt-2 text-sm text-gray-400">
-                  Dodano: <%= l(ad.published_at || ad.created_at, format: :short) %>
-                </div>
-              </div>
-            <% end %>
+            <%= render partial: "ads/ad", collection: @ads %>
           </div>
         <% else %>
-          <p class="text-gray-600">Brak ogłoszeń.</p>
+          <p class="text-gray-600">Brak wyników dla wyszukanej frazy.</p>
         <% end %>
       </div>
     </div>
@@ -59,10 +32,10 @@
   function showForm(type) {
     const form = document.getElementById("dynamic-form");
 
-    if (type === 'want') {
+    if (type === 'szukam') {
       form.innerHTML = `
         <form action="/ads" method="get" class="mt-4">
-          <input type="hidden" name="type" value="want">
+          <input type="hidden" name="type" value="szukam">
           <label class="block mb-2">Czego szukasz?</label>
           <input type="text" name="query" class="w-full border rounded px-3 py-2 mb-4">
           <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded w-full hover:bg-orange-600">Szukaj ofert</button>
@@ -71,7 +44,7 @@
     } else {
       form.innerHTML = `
         <form action="/ads/new" method="get" class="mt-4">
-          <input type="hidden" name="type" value="offer">
+          <input type="hidden" name="type" value="oferuję">
           <p class="mb-2">Chcesz dodać ogłoszenie?</p>
           <button type="submit" class="bg-gray-700 text-white px-4 py-2 rounded w-full hover:bg-gray-800">Dodaj ogłoszenie</button>
         </form>

@@ -3,7 +3,9 @@ class AdsController < ApplicationController
 
   def index
     if params[:query].present?
-      @ads = Ad.where(ad_type: "szukam").where("title ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+      @ads = Ad.where("title ILIKE ?", "%#{params[:query]}%")
+              .order(created_at: :desc)
+      puts "DEBUG: type=#{params[:type]}, query=#{params[:query]}"
     else
       @ads = Ad.all.order(created_at: :desc)
     end

@@ -8,15 +8,30 @@
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="bg-orange-50 text-gray-900 min-h-screen flex flex-col">
+  <body class="bg-gradient-to-br from-orange-50 to-white min-h-screen font-sans text-gray-800">
+    <nav class="bg-white shadow rounded-b-xl mb-10">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <%= link_to root_path, class: "flex items-center space-x-2", aria: { label: "Strona główna" } do %>
+            <img src="/logo.png" alt="Zgłoska" class="h-16 w-auto object-contain" />
+          <% end %>
+        </div>
 
-    <header class="bg-white shadow flex justify-center mb-10">
-      <img src="/logo.png" alt="Zgłoska" class="h-16 w-auto object-contain" />
-    </header>
+        <div class=" md:flex items-center space-x-4">
+          <% if user_signed_in? %>
+            <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-orange-600 transition" %>
+          <% else %>
+            <%= link_to "Zaloguj się", new_user_session_path, class: "text-gray-700 hover:text-orange-600 transition" %>
+            <%= link_to "Zarejestruj się", new_user_registration_path, class: "bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition" %>
+          <% end %>
+        </div>
 
+    </nav>
     <div class="container mx-auto px-4 mt-4">
       <% if notice %>
         <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-4">
@@ -31,7 +46,7 @@
       <% end %>
     </div>
 
-    <main class="flex-grow container mx-auto px-4 py-6">
+    <main class="">
       <%= yield %>
     </main>
 
