@@ -1,0 +1,15 @@
+<% flash.each do |type, message| %>
+  <%# Zamień railsowe typy na kolory Tailwind %>
+  <% color = case type.to_sym
+     when :notice then "green"
+     when :success then "green"
+     when :alert then "red"
+     when :error then "red"
+     else "blue"
+  end %>
+  <div class="flash-message fixed top-4 right-4 z-50 flex items-center gap-2 bg-<%= color %>-100 border border-<%= color %>-300 text-<%= color %>-800 px-5 py-3 rounded-xl shadow-lg animate-fade-in-down transition"
+       data-flash>
+    <span><%= message %></span>
+    <button class="ml-3 text-<%= color %>-600 hover:text-<%= color %>-900 font-bold" onclick="this.parentElement.remove()">×</button>
+  </div>
+<% end %>

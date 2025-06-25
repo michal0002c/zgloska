@@ -22,7 +22,7 @@
           <% end %>
         </div>
 
-        <div class=" md:flex items-center space-x-4">
+        <div class="md:flex items-center space-x-4">
           <% if user_signed_in? %>
             <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-orange-600 transition" %>
           <% else %>
@@ -32,23 +32,18 @@
         </div>
 
     </nav>
-    <div class="container mx-auto px-4 mt-4">
-      <% if notice %>
-        <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-4">
-          <%= notice %>
-        </div>
-      <% end %>
-
-      <% if alert %>
-        <div class="bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded mb-4">
-          <%= alert %>
-        </div>
-      <% end %>
-    </div>
-
-    <main class="">
+      <%= render "shared/flash" %>
       <%= yield %>
-    </main>
 
   </body>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('[data-flash]').forEach(el => {
+      setTimeout(() => {
+        el.classList.add('opacity-0');
+        setTimeout(() => el.remove(), 400); 
+      }, 4000);
+    });
+  });
+</script>
 </html>
