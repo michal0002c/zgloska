@@ -27,6 +27,7 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
+tailwindcss.exe
 
 /public/assets
 

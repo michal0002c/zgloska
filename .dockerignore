@@ -3,6 +3,7 @@
 # Ignore git directory.
 /.git/
 /.gitignore
+tailwindcss.exe
 
 # Ignore bundler config.
 /.bundle
