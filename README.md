@@ -44,7 +44,7 @@ Zgłoska is a modern web application built with Ruby on Rails, designed to help 
 ![image](https://github.com/user-attachments/assets/811c366c-3549-4083-8047-de1a79f1e5e7)
 ![image](https://github.com/user-attachments/assets/da4507ba-ba2e-4d6e-ade7-392c754f0a11)
 ![image](https://github.com/user-attachments/assets/c3fb07ca-7779-4162-aa65-9660188c0470)
-
+![image](https://github.com/user-attachments/assets/fc062427-44f0-41fe-ab98-863b025451c1)
 
 
 ## License
