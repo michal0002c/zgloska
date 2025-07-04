@@ -1,18 +1,42 @@
-<div class="border p-4 rounded shadow bg-white hover:shadow-md transition">
-  <div class="flex justify-between items-center">
-    <h3 class="text-xl font-semibold"><%= link_to ad.title, ad_path(ad), class: "text-blue-600 hover:underline" %></h3>
-    <span class="text-sm px-2 py-1 rounded-full <%= ad.ad_type == "szukam" ? "bg-blue-100 text-blue-700" : "bg-green-100 text-green-700" %>">
+<div class="container mx-auto px-4 md:px-8 max-w-4xl">
+
+<div class="border border-orange-200 shadow-md bg-white hover:shadow-lg transition-all duration-200 p-6 mb-4 flex flex-col gap-3">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <%# Ikonka typu ogłoszenia %>
+      <span class="inline-block text-2xl">
+        <%= ad.ad_type == "szukam" ? "🔎" : "🤝" %>
+      </span>
+      <h3 class="text-xl font-bold">
+        <%= link_to ad.title, ad_path(ad), class: "text-orange-600 hover:text-orange-700 transition" %>
+      </h3>
+    </div>
+    <span class="text-xs px-3 py-1 rounded-full font-bold
+      <%= ad.ad_type == "szukam" ? "bg-orange-100 text-orange-700" : "bg-green-100 text-green-700" %> shadow-sm border">
       <%= ad.ad_type.capitalize %>
     </span>
   </div>
-  <p class="text-gray-700 mt-2"><%= truncate(ad.description, length: 100) %></p>
-  <div class="mt-2 text-sm text-gray-500">
-    Kategoria: <%= ad.category %> • Lokalizacja: <%= ad.location %>
+
+  <p class="text-gray-700 text-base italic mt-1 mb-0">
+    <%= truncate(ad.description, length: 100) %>
+  </p>
+
+  <div class="flex flex-wrap gap-4 items-center text-sm text-gray-600 mt-2">
+    <div class="flex items-center gap-1">
+      📂 <span class="font-medium">Kategoria:</span> <span class="text-gray-800"><%= ad.category %></span>
+    </div>
+    <div class="flex items-center gap-1">
+      📍 <span class="font-medium">Lokalizacja:</span> <span class="text-gray-800"><%= ad.location %></span>
+    </div>
   </div>
-  <div class="mt-2 font-semibold">
-    Budżet: <%= number_to_currency(ad.budget, unit: "zł") %>
+
+  <div class="flex items-center justify-between mt-2">
+    <span class="text-lg font-semibold text-orange-700">
+      💸 <%= number_to_currency(ad.budget, unit: "zł") %>
+    </span>
+    <span class="text-xs text-gray-400">
+      <span class="font-medium">Dodano:</span> <%= l(ad.published_at || ad.created_at, format: :short) %>
+    </span>
   </div>
-  <div class="mt-2 text-sm text-gray-400">
-    Dodano: <%= l(ad.published_at || ad.created_at, format: :short) %>
-  </div>
+</div>
 </div>
