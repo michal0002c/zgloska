@@ -1,9 +1,7 @@
 <div class="container mx-auto px-4 md:px-8 max-w-4xl">
-
 <div class="border border-orange-200 shadow-md bg-white hover:shadow-lg transition-all duration-200 p-6 mb-4 flex flex-col gap-3">
   <div class="flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <%# Ikonka typu ogłoszenia %>
       <span class="inline-block text-2xl">
         <%= ad.ad_type == "szukam" ? "🔎" : "🤝" %>
       </span>
@@ -32,7 +30,7 @@
 
   <div class="flex items-center justify-between mt-2">
     <span class="text-lg font-semibold text-orange-700">
-      💸 <%= number_to_currency(ad.budget, unit: "zł") %>
+      💸 <%= number_with_precision(ad.budget, precision: 2, delimiter: " ") %> zł
     </span>
     <span class="text-xs text-gray-400">
       <span class="font-medium">Dodano:</span> <%= l(ad.published_at || ad.created_at, format: :short) %>
