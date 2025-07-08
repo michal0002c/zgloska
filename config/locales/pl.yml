@@ -1,0 +1,126 @@
+pl:
+ hello: "Witaj świecie"
+ activerecord:
+  errors:
+   models:
+    user:
+     attributes:
+      email:
+       taken: "jest już zajęty"
+      username:
+       taken: "jest już zajęta"
+      password_confirmation:
+       confirmation: "nie zgadza się z hasłem"
+    ad:
+     attributes:
+      title:
+       blank: "nie może być puste"
+      description:
+       blank: "nie może być puste"
+      location:
+       blank: "nie może być puste"
+      category:
+       blank: "nie może być puste"
+   messages:
+    blank: "nie może być puste"
+    taken: "jest już zajęty"
+    confirmation: "nie zgadza się z potwierdzeniem"
+    too_short: "jest za krótkie (minimum %{count} znaków)"
+    too_long: "jest za długie (maksymalnie %{count} znaków)"
+    invalid: "jest nieprawidłowy"
+ errors:
+  format: "%{attribute} %{message}"
+  messages:
+   not_saved: "%{count} błędów uniemożliwiło zapis tego rekordu."
+   taken: "jest już zajęty"
+   confirmation: "nie zgadza się z potwierdzeniem"
+   blank: "nie może być puste"
+   too_short: "jest za krótkie (minimum %{count} znaków)"
+   too_long: "jest za długie (maksymalnie %{count} znaków)"
+   invalid: "jest nieprawidłowy"
+ activemodel:
+  errors:
+   messages:
+    blank: "nie może być puste"
+    taken: "jest już zajęty"
+    confirmation: "nie zgadza się z potwierdzeniem"
+    too_short: "jest za krótkie (minimum %{count} znaków)"
+    too_long: "jest za długie (maksymalnie %{count} znaków)"
+    invalid: "jest nieprawidłowy"
+ attributes:
+  email: "Email"
+  username: "Nazwa użytkownika"
+  password: "Hasło"
+  password_confirmation: "Potwierdzenie hasła"
+  title: "Tytuł"
+  description: "Opis"
+  location: "Lokalizacja"
+  category: "Kategoria"
+
+ devise:
+  failure:
+   already_authenticated: "Jesteś już zalogowany."
+   inactive: "Twoje konto nie zostało jeszcze aktywowane."
+   invalid: "Nieprawidłowy %{authentication_keys} lub hasło."
+   last_attempt:
+    "Masz jeszcze tylko jedną próbę zanim Twoje konto zostanie zablokowane."
+   locked: "Twoje konto jest zablokowane."
+   not_found_in_database: "Niepoprawny login lub hasło."
+   timeout: "Twoja sesja wygasła. Zaloguj się ponownie."
+   unauthenticated: "Musisz się zalogować lub zarejestrować przed kontynuacją."
+   unconfirmed: "Musisz potwierdzić swoje konto przed kontynuacją."
+   expired: "Twoje hasło wygasło. Zresetuj je, aby kontynuować."
+   not_locked: "Twoje konto nie jest zablokowane."
+  sessions:
+   signed_in: "Zalogowano się pomyślnie."
+   signed_out: "Wylogowano się pomyślnie."
+   already_signed_out: "Wylogowanie nie powiodło się."
+   new:
+    sign_in: "Zaloguj się"
+  registrations:
+   signed_up: "Rejestracja zakończona powodzeniem. Witaj!"
+   signed_up_but_unconfirmed:
+    "Zarejestrowano. Sprawdź e-mail, aby potwierdzić swoje konto."
+   signed_up_but_inactive: "Zarejestrowano, ale konto nie jest jeszcze aktywne."
+   updated: "Dane konta zostały zaktualizowane."
+   destroyed: "Twoje konto zostało usunięte."
+   new:
+    sign_up: "Zarejestruj się"
+  passwords:
+   send_instructions:
+    "Instrukcje resetowania hasła zostały wysłane na Twój adres e-mail."
+   updated: "Hasło zostało pomyślnie zmienione."
+   updated_not_active:
+    "Hasło zostało zmienione, ale konto nie jest jeszcze aktywowane."
+   invalid_token: "Token resetowania hasła jest nieprawidłowy lub wygasł."
+   no_token: "Brak tokena resetowania hasła."
+   new:
+    forgot_your_password: "Zapomniałeś hasła?"
+  confirmations:
+   send_instructions:
+    "Instrukcje potwierdzenia konta zostały wysłane na Twój adres e-mail."
+   confirmed: "Twoje konto zostało potwierdzone. Możesz się teraz zalogować."
+   already_confirmed: "Twoje konto zostało już potwierdzone."
+   invalid_token: "Token potwierdzenia jest nieprawidłowy lub wygasł."
+   no_token: "Brak tokena potwierdzenia."
+  unlocks:
+   send_instructions:
+    "Instrukcje odblokowania konta zostały wysłane na Twój adres e-mail."
+   unlocked: "Twoje konto zostało odblokowane. Możesz się teraz zalogować."
+   already_unlocked: "Twoje konto jest już odblokowane."
+   invalid_token: "Token odblokowania jest nieprawidłowy lub wygasł."
+   no_token: "Brak tokena odblokowania."
+  mailer:
+   confirmation_instructions:
+    subject: "Instrukcje potwierdzenia konta"
+   reset_password_instructions:
+    subject: "Instrukcje resetowania hasła"
+   unlock_instructions:
+    subject: "Instrukcje odblokowania konta"
+   email_changed:
+    subject: "Twój adres e-mail został zmieniony"
+   password_change:
+    subject: "Twoje hasło zostało zmienione"
+  omniauth_callbacks:
+   failure: "Nie udało się uwierzytelnić poprzez %{kind} z powodu: %{reason}."
+   success: "Pomyślnie uwierzytelniono z kontem %{kind}."
