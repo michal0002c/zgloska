@@ -30,6 +30,18 @@ class AdsController < ApplicationController
     end
   end
 
+  def mark_inactive
+    @ad = current_user.ads.find(params[:id])
+    @ad.update(status: "nieaktualne")
+    redirect_back fallback_location: settings_path, notice: "Ogłoszenie oznaczone jako nieaktualne."
+  end
+
+  def mark_active
+   @ad = current_user.ads.find(params[:id])
+   @ad.update(status: "aktualne")
+   redirect_back fallback_location: settings_path, notice: "Ogłoszenie ponownie oznaczone jako aktualne."
+  end
+
   private
 
   def ad_params

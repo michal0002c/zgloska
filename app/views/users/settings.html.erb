@@ -1,4 +1,4 @@
-<div class="  bg-gradient-to-br from-orange-50 to-white flex items-center justify-center p-4">
+<div class="bg-gradient-to-br from-orange-50 to-white flex items-center justify-center p-4">
   <div class="max-w-2xl w-full bg-white border border-orange-200 rounded-xl shadow-lg p-8">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl font-bold text-orange-700">Twój profil</h2>
@@ -7,11 +7,12 @@
         <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete, class: "bg-white border border-orange-200 text-orange-600 hover:text-orange-700 px-4 py-2 rounded transition" %>
       </div>
     </div>
+
     <div class="flex flex-col gap-4 mb-6">
       <div><span class="font-medium text-gray-600">Nazwa użytkownika:</span> <span class="text-orange-700 font-semibold"><%= current_user.username %></span></div>
       <div><span class="font-medium text-gray-600">Email:</span> <span><%= current_user.email %></span></div>
       <div><span class="font-medium text-gray-600">Data rejestracji:</span> <span>
-      <%= l(current_user.created_at, format: :long) %>
+        <%= l(current_user.created_at, format: :long) %>
       </span></div>
     </div>
 
@@ -32,10 +33,23 @@
             <div class="mb-4 border-b border-orange-50 pb-2 last:border-b-0 last:pb-0">
               <h3 class="font-semibold text-orange-700"><%= ad.title %></h3>
               <div class="text-sm text-gray-600 mb-1"><%= truncate(ad.description, length: 80) %></div>
-              <div class="text-xs text-gray-500">
+              <div class="text-xs text-gray-500 mb-2">
                 Kategoria: <%= ad.category %> • Lokalizacja: <%= ad.location %> • Budżet: <%= number_with_precision(ad.budget, precision: 2) %> zł
               </div>
-              <%= link_to "Szczegóły", ad_path(ad), class: "text-orange-600 hover:text-orange-700 text-xs underline ml-1" %>
+                <div class="flex items-center gap-2">
+                  <%= link_to "Szczegóły", ad_path(ad), class: "text-orange-600 hover:text-orange-700 text-xs underline ml-1" %>
+                  <% if ad.status == "aktualne" %>
+                    <%= button_to "Oznacz jako nieaktualne", mark_inactive_ad_path(ad), method: :patch,
+                          data: { confirm: "Czy na pewno oznaczyć to ogłoszenie jako nieaktualne?" },
+                          class: "bg-orange-200 hover:bg-orange-300 text-orange-800 font-semibold px-3 py-1 rounded text-xs" %>
+                  <% else %>
+                    <span class="inline-block px-2 py-1 bg-gray-200 text-gray-600 rounded text-xs ml-2">Nieaktualne</span>
+                    <%= button_to "Oznacz jako aktualne", mark_active_ad_path(ad), method: :patch,
+                          data: { confirm: "Czy na pewno przywrócić to ogłoszenie jako aktualne?" },
+                          class: "bg-green-100 hover:bg-green-200 text-green-800 font-semibold px-3 py-1 rounded text-xs ml-2" %>
+                  <% end %>
+</div>
+
             </div>
           <% end %>
         <% else %>

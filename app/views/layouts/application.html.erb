@@ -25,7 +25,7 @@
       </div>
       <div class="flex items-center space-x-4">
         <% if user_signed_in? %>
-          <%= link_to "Ustawienia", settings_path, class: "bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 " %>
+          <%= link_to "Zgłosiek", settings_path, class: "bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 " %>
           <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete,
                 class: "text-orange-600 px-4 py-2 transition hover:text-orange-700 border border-orange-200" %>
         <% else %>
