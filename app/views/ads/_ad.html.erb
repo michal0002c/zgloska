@@ -33,7 +33,7 @@
       💸 <%= number_with_precision(ad.budget, precision: 2, delimiter: " ") %> zł
     </span>
     <span class="text-xs text-gray-400">
-      <span class="font-medium">Dodano:</span> <%= l(ad.published_at || ad.created_at, format: :short) %>
+      <span class="font-medium">Dodano:</span> <%= l(ad.published_at || ad.created_at, format: :long) %>
     </span>
   </div>
 </div>

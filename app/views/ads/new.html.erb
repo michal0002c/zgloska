@@ -39,10 +39,18 @@
         <%= f.text_field :location, class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all" %>
       </div>
 
-      <div>
-        <%= f.label :category, "Kategoria", class: "block text-sm font-semibold text-orange-700 mb-1" %>
-        <%= f.text_field :category, class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all" %>
-      </div>
+<div>
+  <%= f.label :category, "Kategoria", class: "block text-sm font-semibold text-orange-700 mb-1" %>
+  <div class="w-full px-4 py-2 border border-orange-200 rounded-lg bg-white flex flex-wrap gap-x-5 gap-y-2 focus-within:ring-2 focus-within:ring-orange-200 focus-within:border-orange-500 transition-all">
+    <% available_categories.each do |kat| %>
+      <label class="flex items-center space-x-2 cursor-pointer">
+        <%= f.radio_button :category, kat, class: "accent-orange-600 w-4 h-4 transition-all" %>
+        <span class="text-sm text-gray-700"><%= kat %></span>
+      </label>
+    <% end %>
+  </div>
+</div>
+
 
       <div>
         <%= f.label :contact_method, "Forma kontaktu (np. email, tel)", class: "block text-sm font-semibold text-orange-700 mb-1" %>
