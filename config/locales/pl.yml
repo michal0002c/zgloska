@@ -1,5 +1,13 @@
 pl:
  hello: "Witaj świecie"
+ time:
+  formats:
+   short: "%d.%m.%Y %H:%M"
+   long: "%d %B %Y, %H:%M"
+ date:
+  formats:
+   short: "%d.%m.%Y"
+   long: "%d %B %Y"
  activerecord:
   errors:
    models:
@@ -56,7 +64,6 @@ pl:
   description: "Opis"
   location: "Lokalizacja"
   category: "Kategoria"
-
  devise:
   failure:
    already_authenticated: "Jesteś już zalogowany."
