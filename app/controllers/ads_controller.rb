@@ -24,6 +24,7 @@ class AdsController < ApplicationController
     @ad.published_at = Time.current
     if @ad.save
       redirect_to @ad, notice: "Ogłoszenie zostało dodane."
+      AdMailer.new_ad_notification(@ad).deliver_later
     else
       render :new
     end

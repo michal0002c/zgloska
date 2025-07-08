@@ -1,0 +1,12 @@
+<h2>Cześć, <%= @user.username %>!</h2>
+<p>Właśnie dodałeś nowe ogłoszenie:</p>
+<p>
+  <strong><%= @ad.title %></strong><br>
+  <%= @ad.description %>
+</p>
+<p>
+  Zobacz swoje ogłoszenie: <%= link_to 'Przejdź do ogłoszenia', ad_url(@ad) %>
+</p>
+<p>
+  Dziękujemy za korzystanie z Zgłoski!
+</p>

@@ -36,7 +36,7 @@
 
           <!-- Budżet -->
           <div class="text-3xl font-bold text-gray-800 mb-2">
-            <%= number_to_currency(@ad.budget, unit: "zł") %>
+            <%= number_with_precision(@ad.budget, precision: 2, delimiter: " ") %> zł
           </div>
 
           <!-- Data dodania -->

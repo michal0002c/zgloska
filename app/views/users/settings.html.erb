@@ -1,0 +1,47 @@
+<div class="  bg-gradient-to-br from-orange-50 to-white flex items-center justify-center p-4">
+  <div class="max-w-2xl w-full bg-white border border-orange-200 rounded-xl shadow-lg p-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold text-orange-700">Twój profil</h2>
+      <div class="flex gap-2">
+        <%= link_to "Edycja danych", edit_user_registration_path, class: "bg-orange-100 hover:bg-orange-200 text-orange-700 font-semibold px-4 py-2 rounded transition" %>
+        <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete, class: "bg-white border border-orange-200 text-orange-600 hover:text-orange-700 px-4 py-2 rounded transition" %>
+      </div>
+    </div>
+    <div class="flex flex-col gap-4 mb-6">
+      <div><span class="font-medium text-gray-600">Nazwa użytkownika:</span> <span class="text-orange-700 font-semibold"><%= current_user.username %></span></div>
+      <div><span class="font-medium text-gray-600">Email:</span> <span><%= current_user.email %></span></div>
+      <div><span class="font-medium text-gray-600">Data rejestracji:</span> <span>
+      <%= l(current_user.created_at, format: :long) %>
+      </span></div>
+    </div>
+
+    <div x-data="{ open: false }">
+      <button
+        @click="open = !open"
+        class="w-full flex items-center justify-between bg-orange-100 hover:bg-orange-200 text-orange-700 font-semibold px-4 py-2 rounded transition focus:outline-none mb-2"
+        :aria-expanded="open"
+      >
+        <span>Moje ogłoszenia</span>
+        <svg :class="{'rotate-180': open}" class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div x-show="open" x-transition class="bg-white border border-orange-100 rounded p-4 mt-2 shadow-inner">
+        <% if current_user.ads.any? %>
+          <% current_user.ads.each do |ad| %>
+            <div class="mb-4 border-b border-orange-50 pb-2 last:border-b-0 last:pb-0">
+              <h3 class="font-semibold text-orange-700"><%= ad.title %></h3>
+              <div class="text-sm text-gray-600 mb-1"><%= truncate(ad.description, length: 80) %></div>
+              <div class="text-xs text-gray-500">
+                Kategoria: <%= ad.category %> • Lokalizacja: <%= ad.location %> • Budżet: <%= number_with_precision(ad.budget, precision: 2) %> zł
+              </div>
+              <%= link_to "Szczegóły", ad_path(ad), class: "text-orange-600 hover:text-orange-700 text-xs underline ml-1" %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="text-gray-500 italic">Nie masz jeszcze żadnych ogłoszeń.</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
