@@ -1,14 +1,15 @@
 module AdsHelper
   def available_categories
     [
-      "Remont",
-      "Sprzątanie",
-      "Transport",
-      "Naprawa",
-      "Opieka nad dziećmi",
-      "Korepetycje",
+      "Motoryzacja",
+      "Nieruchomości",
+      "Praca",
+      "Dom i ogród",
+      "Elektrnika",
+      "Moda",
+      "Zwierzęta",
       "Inne"
-    ]
+    ].sort
   end
 
   def available_locations
