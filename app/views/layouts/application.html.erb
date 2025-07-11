@@ -14,42 +14,56 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="bg-gradient-to-br from-orange-50 to-white min-h-screen font-sans text-red-800">
-  <nav class="bg-white border-b-4 border-orange-400 shadow mb-8">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="flex items-center space-x-8">
-        <%= link_to root_path, class: "flex items-center space-x-2", aria: { label: "Strona główna" } do %>
-          <img src="/logo.png" alt="Zgłoska" class="h-16 w-auto object-contain drop-shadow" />
-        <% end %>
-        <%= link_to "Ogłoszenia", ads_path, class: "text-orange-600 font-semibold px-4 py-2 transition hover:text-orange-700" %>
-      </div>
-      <div class="flex items-center space-x-4">
-        <% if user_signed_in? %>
-          <%= link_to "Zgłosiek", settings_path, class: "bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 " %>
-          <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete,
-                class: "text-orange-600 px-4 py-2 transition hover:text-orange-700 border border-orange-200" %>
-        <% else %>
-          <%= link_to "Zaloguj się", new_user_session_path,
-                class: "text-orange-600 px-4 py-2 transition hover:text-orange-700" %>
-          <%= link_to "Zarejestruj się", new_user_registration_path,
-                class: "bg-orange-100 text-orange-700 px-4 py-2 font-semibold transition hover:bg-orange-200 hover:text-orange-900 border border-orange-200" %>
-        <% end %>
-      </div>
-    </div>
-  </nav>
+  <body class="bg-gradient-to-br from-orange-50 via-white to-orange-100 min-h-screen font-sans text-red-800">
+    <!-- Sticky navigation -->
+    <nav id="stickyNav" class="sticky top-0 z-40 bg-white/80 sticky-nav-animate border-b-4 border-orange-400 mb-8 transition-all">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-8">
+          <%= link_to root_path, class: "flex items-center space-x-2", aria: { label: "Strona główna" } do %>
+            <img src="/logo.png" alt="Zgłoska" class="h-16 w-auto object-contain drop-shadow-lg" />
+          <% end %>
+          <%= link_to "Ogłoszenia", ads_path, class: "text-orange-600 font-semibold px-4 py-2 rounded transition hover:text-orange-700 hover:bg-orange-50" %>
+          <%= link_to "Opublikuj Zgłośke", new_ad_path,
+          class: "bg-orange-500 text-white py-2 px-4 rounded-lg font-semibold shadow-sm transition hover:bg-orange-600 focus:ring-2 focus:ring-orange-300" %>
 
-      <%= render "shared/flash" %>
-      <%= yield %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <% if user_signed_in? %>
+            <%= link_to "Zgłosiek", settings_path, class: "bg-orange-500 text-white py-2 px-4 rounded-lg font-semibold shadow-sm transition hover:bg-orange-600 focus:ring-2 focus:ring-orange-300" %>
+            <%= button_to "Wyloguj się", destroy_user_session_path, method: :delete,
+                  class: "text-orange-600 px-4 py-2 transition hover:text-orange-700 border border-orange-200 rounded-lg cursor-pointer" %>
+          <% else %>
+            <%= link_to "Zaloguj się", new_user_session_path,
+                  class: "text-orange-600 px-4 py-2 rounded transition hover:text-orange-700 hover:bg-orange-50" %>
+            <%= link_to "Zarejestruj się", new_user_registration_path,
+                  class: "bg-orange-100 text-orange-700 px-4 py-2 font-semibold transition hover:bg-orange-200 hover:text-orange-900 border border-orange-200 rounded-lg" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
+    <%= render "shared/flash" %>
+    <%= yield %>
+
+    <script>
+      // Dodaje cień i glass efekt do sticky nav po scrollu
+      document.addEventListener("DOMContentLoaded", function() {
+        const nav = document.getElementById("stickyNav");
+        window.addEventListener("scroll", function() {
+          if(window.scrollY > 4) {
+            nav.classList.add("sticky-nav-scrolled");
+          } else {
+            nav.classList.remove("sticky-nav-scrolled");
+          }
+        });
+        // Obsługa automatycznego ukrywania flashy
+        document.querySelectorAll('[data-flash]').forEach(el => {
+          setTimeout(() => {
+            el.classList.add('opacity-0');
+            setTimeout(() => el.remove(), 400); 
+          }, 4000);
+        });
+      });
+    </script>
   </body>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('[data-flash]').forEach(el => {
-      setTimeout(() => {
-        el.classList.add('opacity-0');
-        setTimeout(() => el.remove(), 400); 
-      }, 4000);
-    });
-  });
-</script>
 </html>
