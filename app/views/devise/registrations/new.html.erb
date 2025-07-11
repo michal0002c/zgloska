@@ -1,18 +1,30 @@
-<div class="bg-gradient-to-br from-orange-50 to-white flex items-center justify-center p-4">
-  <div class="max-w-md w-full bg-white rounded-xl shadow-lg border border-orange-200 p-8">
-    <h2 class="text-2xl font-bold text-orange-700 mb-6 text-center drop-shadow">Zarejestruj się</h2>
+<div class="bg-gradient-to-br from-orange-50 to-white flex items-center justify-center min-h-screen p-4">
+  <div class="max-w-md w-full bg-white/90 rounded-2xl shadow-2xl border border-orange-200 p-8 relative overflow-hidden">
+    <!-- Animowana ikonka lub emoji powitania -->
+    <div class="absolute -top-10 left-1/2 -translate-x-1/2 text-6xl drop-shadow animate-pulse-slow">🧡</div>
+    <h2 class="text-3xl font-extrabold text-orange-700 mb-2 text-center drop-shadow tracking-wide">Witaj w Zgłosce!</h2>
+    <p class="text-center text-gray-500 mb-5">Stwórz swoje konto i dołącz do zgłoskowej społeczności.</p>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+      <%# Ogólne błędy na samej górze %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div>
         <%= f.label :email, "Adres e-mail", class: "block text-sm font-semibold text-orange-700 mb-1" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "your@email.com", class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "your@email.com",
+            class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all #{'border-red-400' if resource.errors[:email].any?}" %>
+        <% if resource.errors[:email].any? %>
+          <span class="text-xs text-red-500 block mt-1"><%= resource.errors[:email].first %></span>
+        <% end %>
       </div>
 
       <div>
         <%= f.label :username, "Nazwa użytkownika", class: "block text-sm font-semibold text-orange-700 mb-1" %>
-        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "np. zgłoskowy_wilk", class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all" %>
+        <%= f.text_field :username, autocomplete: "username", placeholder: "np. zgłoskowy_wilk",
+            class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all #{'border-red-400' if resource.errors[:username].any?}" %>
+        <% if resource.errors[:username].any? %>
+          <span class="text-xs text-red-500 block mt-1"><%= resource.errors[:username].first %></span>
+        <% end %>
       </div>
 
       <div>
@@ -20,15 +32,27 @@
         <% if @minimum_password_length %>
           <em class="text-xs text-gray-500 ml-2">(<%= @minimum_password_length %> znaków minimum)</em>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••", class: "w-full px-4 py-2 mt-1 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all" %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••",
+            class: "w-full px-4 py-2 mt-1 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all #{'border-red-400' if resource.errors[:password].any?}", id: "user_password" %>
+        <% if resource.errors[:password].any? %>
+          <span class="text-xs text-red-500 block mt-1"><%= resource.errors[:password].first %></span>
+        <% end %>
+        <!-- Siła hasła (prostą animowaną belką) -->
+        <div class="h-2 rounded bg-orange-100 mt-2 overflow-hidden">
+          <div id="password-strength" class="h-full transition-all duration-300"></div>
+        </div>
       </div>
 
       <div>
         <%= f.label :password_confirmation, "Powtórz hasło", class: "block text-sm font-semibold text-orange-700 mb-1" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••", class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••",
+            class: "w-full px-4 py-2 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-200 focus:border-orange-500 outline-none transition-all #{'border-red-400' if resource.errors[:password_confirmation].any?}" %>
+        <% if resource.errors[:password_confirmation].any? %>
+          <span class="text-xs text-red-500 block mt-1"><%= resource.errors[:password_confirmation].first %></span>
+        <% end %>
       </div>
 
-      <%= f.submit "Zarejestruj się", class: "w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2.5 rounded-lg shadow transition-colors" %>
+      <%= f.submit "Zarejestruj się", class: "w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2.5 rounded-lg shadow transition-colors mt-4" %>
     <% end %>
 
     <div class="mt-6 text-center text-sm text-gray-700">
@@ -37,3 +61,36 @@
     </div>
   </div>
 </div>
+
+<style>
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1);}
+  50% { opacity: 0.8; transform: scale(1.15);}
+}
+.animate-pulse-slow { animation: pulse-slow 1.3s infinite; }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Prosty bar siły hasła
+  const password = document.getElementById("user_password");
+  const strength = document.getElementById("password-strength");
+  if(password && strength) {
+    password.addEventListener("input", function() {
+      const val = password.value;
+      let score = 0;
+      if(val.length > 5) score += 1;
+      if(val.match(/[A-Z]/)) score += 1;
+      if(val.match(/[0-9]/)) score += 1;
+      if(val.match(/[^A-Za-z0-9]/)) score += 1;
+      // max 4
+      strength.style.width = `${score*25}%`;
+      if(score == 0) strength.style.backgroundColor = "transparent";
+      else if(score <= 1) strength.style.backgroundColor = "#F87171"; // czerwona
+      else if(score == 2) strength.style.backgroundColor = "#F59E42"; // pomarańczowa
+      else if(score == 3) strength.style.backgroundColor = "#FBBF24"; // żółta
+      else strength.style.backgroundColor = "#10B981"; // zielona
+    });
+  }
+});
+</script>
