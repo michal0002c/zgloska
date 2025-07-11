@@ -1,4 +1,3 @@
-# Zgłoska Application
 ## Overview
 Zgłoska is a modern web application built with Ruby on Rails, designed to help users easily browse, add, and manage classified ads with a clean and intuitive interface. Inspired by platforms like OLX, Zgłoska supports user registration, login (with email or username), password reset, and powerful search/filter options for advertisements.
 
@@ -38,13 +37,16 @@ Zgłoska is a modern web application built with Ruby on Rails, designed to help 
 
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/60a9c245-c9c2-4693-9b86-0bd864cc12cc)
-![image](https://github.com/user-attachments/assets/a6cd19c2-09a0-4e8c-a519-c91a6eb53276)
-![image](https://github.com/user-attachments/assets/d33d01c4-8f74-4680-9d5e-cf0f120c8a96)
-![image](https://github.com/user-attachments/assets/811c366c-3549-4083-8047-de1a79f1e5e7)
-![image](https://github.com/user-attachments/assets/da4507ba-ba2e-4d6e-ade7-392c754f0a11)
-![image](https://github.com/user-attachments/assets/c3fb07ca-7779-4162-aa65-9660188c0470)
-![image](https://github.com/user-attachments/assets/fc062427-44f0-41fe-ab98-863b025451c1)
+<img width="1839" height="913" alt="image" src="https://github.com/user-attachments/assets/dda249fa-ed9f-4b38-b72e-d667c8f24839" />
+<img width="1612" height="539" alt="image" src="https://github.com/user-attachments/assets/6fb89580-2774-4fe1-bb0c-0a46d579e09a" />
+<img width="1845" height="544" alt="image" src="https://github.com/user-attachments/assets/3ec7ca33-f589-40ac-923f-eb5079a0871e" />
+<img width="1166" height="928" alt="image" src="https://github.com/user-attachments/assets/d6d071b1-d21e-4558-ac0d-0602d5f79a30" />
+<img width="461" height="157" alt="image" src="https://github.com/user-attachments/assets/2c75f451-e347-43e0-adf0-b678a0c9ef75" />
+<img width="254" height="88" alt="image" src="https://github.com/user-attachments/assets/e7015529-746c-4675-a573-43c8a85e8154" />
+<img width="1110" height="525" alt="image" src="https://github.com/user-attachments/assets/977bef22-015e-4b73-bdbe-7d8891b7fa0f" />
+<img width="1107" height="526" alt="image" src="https://github.com/user-attachments/assets/0b47d08d-0f29-44a4-a9ea-f8f78b904674" />
+<img width="246" height="74" alt="image" src="https://github.com/user-attachments/assets/119e4815-7356-4e2e-9066-a56011decd67" />
+<img width="384" height="478" alt="image" src="https://github.com/user-attachments/assets/b9798adf-2849-4cd2-8577-1a3136a87c8b" />
 
 
 ## License
